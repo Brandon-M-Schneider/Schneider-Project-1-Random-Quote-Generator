@@ -1,6 +1,6 @@
+// Program that displays a random quote and background color from an array of quotes and colors.
 
-var result = "";
-
+// Array that houses quotes and the quote's details inside key-value pairs for each object.
 var quoteBank = [
   {
     quote: "Gotta Go Fast!",
@@ -107,20 +107,25 @@ var quoteBank = [
     year: 2009,
     category: "Science Fiction",
   },
-
 ]
 
+/*
+ Function that creates a random number, uses that number as an index value for the 'quoteBank' object, and returns the property-value pairs called from the object. The array parameter is based on the total array values in the 'quoteBank' object.
+ */
 function getRandomQuote(array) {
   let randomNumber = Math.floor(Math.random() * array);
   let quoteResult = quoteBank[randomNumber];
   return quoteResult;
 }
 
-
+/*
+Calls the getRandomQuote function with an argument that sends the total value length of the quoteBank (using the .length property) to the 'array' parameter, and stores the values of that call to the 'results' variable. 
+*/
 function printQuote() {
   let string = getRandomQuote(quoteBank.length);
   let result = ("<p class = quote>" + string.quote + "</p>");
   result += ("<p class = source>" + string.source);
+  // Conditionals that only display specific key-value pairs if they exist
   if (string.citation) {
     result += "<span class = citation>" + string.citation + "</span>";
   }
@@ -133,25 +138,30 @@ function printQuote() {
   result += "</p>"
   document.getElementById('quote-box').innerHTML = result;
 }
-printQuote();
+printQuote(); // Displays the quote and details to the document
 
+/* Function that randomly selects a color from the 'colors' array, and sends the new color hexadecimal as the new primary background color value to the 'background' attribute
+*/
 function changeBackgroundColor() {
   let colors = ["#FFCCCC", "#3366FF", "#36b55c", "#d96276", "#6d249e", "#916988", "#b36cbe", "#6f90dd", "#0cb5f4", "#c981a0", "#7888bd", "#4d697a", "#ed628f", "#9265b2", "#65ced3", "#b73131", "#59aa2e"];
   let formula = Math.floor(Math.random() * colors.length);
   let randomColor = colors[formula];
   let final = document.body.style.background = randomColor;
-  final += document.body.style.transition = "all 0.5s";
+  // Transitions background colors over a 0.5 second period, created from trial-and-error with assistance from https://www.w3schools.com/jsref/prop_style_background.asp
+  final += document.body.style.transition = "all 0.5s"; 
   return final;
 }
 
+// Calls the changeBackgroundColor and printQuote function when the "show another quote" button is clicked.
 document.getElementById('loadQuote').addEventListener("click", changeBackgroundColor, false);
 
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
 
+// Calls the changeBackgroundColor() and printQuote() function when 30 seconds pass.
 setInterval(printQuote, 30000);
 setInterval(changeBackgroundColor, 30000);
 
-console.log("End Program");
+console.log("Complete");
 
 
 

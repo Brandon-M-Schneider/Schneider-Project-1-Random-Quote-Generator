@@ -15,7 +15,7 @@ body {
 }
 
 .quote {
-  font-size: 3.7rem; /* Lowered overall font size */
+  font-size: 3.7rem; /* Lowered overall font size from its original starting value*/
   font-weight: 400;
   line-height: 1.1;
   position: relative;
@@ -82,7 +82,7 @@ body {
   border-radius: 4px;
   border: 2px solid #fff;
   color: #fff;
-  background-color: #2980B9; /* Changed to compliment color changes */
+  background-color: #2980B9; /* Changed from hexidecimal green to compliment webpage color changes */
   padding: 15px 0;
   transition: .5s ;
 }
