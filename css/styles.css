@@ -15,7 +15,9 @@ body {
 }
 
 .quote {
-  font-size: 3.7rem; /* Lowered overall font size from its original starting value*/
+  font-size: 3.7rem; /* 
+  Lowered overall font-size from its original starting value
+  */
   font-weight: 400;
   line-height: 1.1;
   position: relative;
@@ -67,6 +69,9 @@ body {
   font-style: normal;
 }
 
+/* 
+Added CSS for the category property in the 'quotes' array of objects
+*/
 .category:before {
   content: "Category: "; 
   font-style: normal;
@@ -82,7 +87,9 @@ body {
   border-radius: 4px;
   border: 2px solid #fff;
   color: #fff;
-  background-color: #2980B9; /* Changed from hexidecimal green to compliment webpage color changes */
+  background-color: #2980B9; /* 
+  Changed background-color from hexidecimal green to complement webpage color changes 
+  */
   padding: 15px 0;
   transition: .5s ;
 }

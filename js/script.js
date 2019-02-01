@@ -1,7 +1,7 @@
 // Program that displays a random quote and background color from an array of quotes and colors.
 
 // Array that houses quotes and the quote's details inside key-value pairs for each object.
-var quoteBank = [
+var quotes = [
   {
     quote: "Gotta Go Fast!",
     source: "Sonic The Hedgehog",
@@ -107,22 +107,29 @@ var quoteBank = [
     year: 2009,
     category: "Science Fiction",
   },
+  {
+    quote: "Yahaha! You found me!",
+    source: "Korok",
+    citation: "The Legend of Zelda: Breath of the Wild",
+    year: 2017,
+    category: "Gaming",
+  },
 ]
 
 /*
- Function that creates a random number, uses that number as an index value for the 'quoteBank' object, and returns the property-value pairs called from the object. The array parameter is based on the total array values in the 'quoteBank' object.
+ Function that creates a random number, uses that number as an index value for the 'quotes' array of objects, and returns the property-value pairs called from the object. The array parameter is based on the total array values in the 'quotes' array of objects.
  */
 function getRandomQuote(array) {
   let randomNumber = Math.floor(Math.random() * array);
-  let quoteResult = quoteBank[randomNumber];
+  let quoteResult = quotes[randomNumber];
   return quoteResult;
 }
 
 /*
-Calls the getRandomQuote function with an argument that sends the total value length of the quoteBank (using the .length property) to the 'array' parameter, and stores the values of that call to the 'results' variable. 
+Calls the getRandomQuote function with an argument that sends the total value length of the 'quotes' array of objects (using the .length property) to the 'array' parameter, and stores the values of that call to the 'results' variable. 
 */
 function printQuote() {
-  let string = getRandomQuote(quoteBank.length);
+  let string = getRandomQuote(quotes.length);
   let result = ("<p class = quote>" + string.quote + "</p>");
   result += ("<p class = source>" + string.source);
   // Conditionals that only display specific key-value pairs if they exist
@@ -148,7 +155,7 @@ function changeBackgroundColor() {
   let randomColor = colors[formula];
   let final = document.body.style.background = randomColor;
   // Transitions background colors over a 0.5 second period, created from trial-and-error with assistance from https://www.w3schools.com/jsref/prop_style_background.asp
-  final += document.body.style.transition = "all 0.5s"; 
+  final += document.body.style.transition = "all 0.5s";
   return final;
 }
 

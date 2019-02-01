@@ -9,3 +9,4 @@ Every 30 seconds, the webpage displays both a new quote and a new background col
 Future Commits:
 - Have the setInterval() timer reset when the user clicks on "show another quote" and only activate on the printQuote and changeBackgroundColor functions when idle for 30 seconds.
 - Have an image that is unique to each quote displayed on the webpage.
+- Small chance the same quote/background color is displayed when "show another quote" is clicked. Write code that disables the ability to show the same quote/background color twice in a row.
