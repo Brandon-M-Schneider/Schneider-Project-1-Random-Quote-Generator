@@ -1,50 +1,114 @@
-/******************************************
-Treehouse Techdegree:
-FSJS project 1 - A Random Quote Generator
-******************************************/
-
-// Study guide for this project - https://drive.google.com/file/d/1s5grutGuQFwJcQP8bFwEI69Q8FCkGdDk/view?usp=sharing
-
-
-/*** 
-  Create the array of quote objects and name it `quotes`.
-  Add at least five quote objects to the `quotes` array.
-  Give each quote object a `quote` and `source` property.
-
-  Recommended: 
-    - Add at least one `year` and/or `citation` property to at least one 
-      quote object.
-***/
 
 var result = "";
 
 var quoteBank = [
   {
-      quote: "Gotta Go Fast!",
-      source: "Sonic The Hedgehog",
-      citation: "Sonic X",
-      year: 2003,
+    quote: "Gotta Go Fast!",
+    source: "Sonic The Hedgehog",
+    citation: false,
+    year: false,
+    category: "Gaming",
   },
   {
-      quote: "Bond. James Bond.",
-      source: "Sean Connery",
-      citation: "Dr. No",
-      year: 1962,
+    quote: "That's no moon... it's a space station.",
+    source: "Obi Wan Kenobi",
+    citation: "Star Wars Episode IV: A New Hope",
+    year: 1977,
+    category: "Science Fiction",
   },
   {
-      quote: "That wasn't flying, it was falling with style!",
-      source: "Woody",
-      citation: false,
-      year: 1995,
-  }
-]
+    quote: "That wasn't flying, it was falling with style!",
+    source: "Woody",
+    citation: "Toy Story",
+    year: 1995,
+    category: "Animation",
+  },
+  {
+    quote: "Objection!",
+    source: "Phoenix Wright - Ace Attorney",
+    citation: false,
+    year: false,
+    category: "Gaming",
+  },
+  {
+    quote: "When you go through hardships and decide not to surrender, that is strength.",
+    source: "Arnold Schwarzenegger",
+    citation: false,
+    year: false,
+    category: "Inspirational",
+  },
+  {
+    quote: "Thank you Mario! But our Princess is in another castle!",
+    source: "Toad",
+    citation: "Super Mario Bros.",
+    year: 1985,
+    category: "Gaming",
+  },
+  {
+    quote: "Not all those who wander are lost.",
+    source: "J. R. R. Tolkien",
+    citation: "The Lord of the Rings",
+    year: 2001,
+    category: "Poem",
+  },
+  {
+    quote: "The name is Bond. James Bond.",
+    source: "James Bond - 007",
+    citation: false,
+    year: false,
+    category: "Action",
+  },
+  {
+    quote: "Put that thing back where it came from, or so help me.",
+    source: "Mike Wazowski",
+    citation: "Monsters, Inc.",
+    year: 2001,
+    category: "Animation",
+  },
+  {
+    quote: "Have you seen my hat?",
+    source: "Bear",
+    citation: "I Want My Hat Back by Jon Klassen",
+    year: 2011,
+    category: "Children's Literature",
+  },
+  {
+    quote: "Welcome, to Jurassic Park!",
+    source: "John Hammond",
+    citation: "Jurassic Park",
+    year: 1993,
+    category: "Action",
+  },
+  {
+    quote: "You know nothing, Jon Snow.",
+    source: "Ygritte",
+    citation: "Game of Thrones",
+    year: 2012,
+    category: "Fantasy",
+  },
+  {
+    quote: "A journey of a thousand miles begins with a single step.",
+    source: "Lao Tzu",
+    citation: false,
+    year: false,
+    category: "Inspirational",
+  },
+  {
+    quote: "The world could always use more heroes!",
+    source: "Tracer",
+    citation: "Overwatch",
+    year: 2016,
+    category: "Gaming",
+  },
+  {
+    quote: "Sometimes your whole life boils down to one insane move.",
+    source: "Jake Sully",
+    citation: "Avatar",
+    year: 2009,
+    category: "Science Fiction",
+  },
 
-/***
-  Create the `getRandomQuote` function to:
-   - generate a random number 
-   - use the random number to `return` a random quote object from the 
-     `quotes` array.
-***/
+]
 
 function getRandomQuote(array) {
   let randomNumber = Math.floor(Math.random() * array);
@@ -52,16 +116,6 @@ function getRandomQuote(array) {
   return quoteResult;
 }
 
-
-/***
-  Create the `printQuote` function to: 
-   - call the `getRandomQuote` function and assign it to a variable.
-   - use the properties of the quote object stored in the variable to 
-     create your HTML string.
-   - use conditionals to make sure the optional properties exist before 
-     they are added to the HTML string.
-   - set the `innerHTML` of the `quote-box` div to the HTML string. 
-***/
 
 function printQuote() {
   let string = getRandomQuote(quoteBank.length);
@@ -73,30 +127,32 @@ function printQuote() {
   if (string.year) {
     result += "<span class = year>" + string.year + "</span>";
   }
+  if (string.category) {
+    result += "<br><span class = category>" + string.category;
+  }
   result += "</p>"
   document.getElementById('quote-box').innerHTML = result;
 }
 printQuote();
 
-/***
-  When the "Show another quote" button is clicked, the event listener 
-  below will be triggered, and it will call, or "invoke", the `printQuote` 
-  function. So do not make any changes to the line of code below this 
-  comment.
-***/
+function changeBackgroundColor() {
+  let colors = ["#FFCCCC", "#3366FF", "#36b55c", "#d96276", "#6d249e", "#916988", "#b36cbe", "#6f90dd", "#0cb5f4", "#c981a0", "#7888bd", "#4d697a", "#ed628f", "#9265b2", "#65ced3", "#b73131", "#59aa2e"];
+  let formula = Math.floor(Math.random() * colors.length);
+  let randomColor = colors[formula];
+  let final = document.body.style.background = randomColor;
+  final += document.body.style.transition = "all 0.5s";
+  return final;
+}
+
+document.getElementById('loadQuote').addEventListener("click", changeBackgroundColor, false);
 
 document.getElementById('loadQuote').addEventListener("click", printQuote, false);
 
+setInterval(printQuote, 30000);
+setInterval(changeBackgroundColor, 30000);
 
-// Remember to delete the comments that came with this file, and replace them with your own code comments.
+console.log("End Program");
 
-console.log("Working");
-
-// A getRandomQuote function should grab a quote from the quoteBank array and return itand a printQuote function
-
-// How do I generate a random number?
-// How do I use that random number to get that quotes from the quotes array?
-// If using a small snippet of code from another site, give them credit in the form of a comment
 
 
 
